@@ -11,9 +11,9 @@ class FormController extends Controller
     {
         return view('form');
     }
-    public function show()
+
+    public function show(Request $request)
     {
-        unset($_SESSION);
         $arr = array();
         // echo '<pre>';
         array_shift($_POST);
@@ -22,6 +22,12 @@ class FormController extends Controller
         $arr = $_POST;
         // array_push($arr, $_POST);
         // print_r($arr); die;
-        return view('getForm', ['arr' => $arr]);
+        // var_dump($request->except('_token'));die;
+        // var_dump($request->validate([
+        //     'name' => ['required', 'unique:posts', 'max:255'],
+        //     'email' => ['required'],
+        // ]));die;
+        return view('getForm', ['arr' => $arr])->with('name', 'nguyen ba nam')
+                                               ->with('email', 'nguyen@gamil.com');
     }
 }

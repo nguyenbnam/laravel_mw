@@ -15,10 +15,12 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h2> nguyen ba nam </h2>
+                <h4><?php echo  $name ?></h4>
+                <h5><?php echo $email ?></h5>
+                <!-- <h2> nguyen ba nam </h2> -->
 
                 <h3>Thông tin lấy từ form</h3>
-                <table class="table table-bordered tablefa-inverse table-responsive">
+                <table class="table table-bordered ">
                     <thead class="thead-default">
                         <tr>
                             <th>name</th>
@@ -27,9 +29,6 @@
                             <th>content</th>
                         </tr>
                     </thead>
-                    <?php
-                    echo '<pre>';
-                    ?>
                         <tbody>
                             <tr>
                                 <td scope="row"><?php echo $arr['name']?></td>
@@ -39,6 +38,7 @@
                             </tr>
                         </tbody>
                 </table>
+
             </div>
         </div>
     </div>

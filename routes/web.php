@@ -39,6 +39,9 @@ Route::view('/a', 'test', ['name' => 'nguyen ba nam']); // name là biến cho c
 Route::get('/user/{id}', function (Request $request, $id) {
     return 'id User: ' . $id;
 });
+Route::get('/af', function(){
+    return 'dau cat moi';
+})->name('');
 // cai đặt mặc định name cho thằng name kia với dấu ? cuối
 
 // Route::get('/user/{name?}', function ($name = null) {
@@ -134,7 +137,6 @@ Route::post('/form', [FormController::class, 'show']);
 
 // dung middleware
 Route::get('/aa/{id}', function ($id) {
-
     return  'ngu nhu bo';
 })->middleware('validate_token')->name('use');
 
@@ -151,4 +153,54 @@ Route::prefix('post')->name('post.')->group(function ()
        return 'content in the post route';
    });
 });
+
+// Actions Handled By Resource Controller
+
+// use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\PostController;
+// use Illuminate\Support\Facades\Redirect;
+// Route::resource('photos', PhotoController::class);
+// Route::resources([       // viet resources với nhiều route - dung resource thì n giống với kiểu n sẽ auto loading các action trong cái controller đó
+//     'photos' => PhotoController::class,
+//     'posts' => PostController::class,
+// ]);
+
+// Route::resource('photos', PhotoController::class)
+//         ->missing(function (Request $request) {
+//             return Redirect::route('photos.create');
+//         });
+
+// Route::resource('photos', PhotoController::class)->only([
+//     'index', 'show'
+// ]);
+// Route::resource('photos', PhotoController::class)->except([
+//     'create', 'store', 'update', 'destroy'
+// ]);
+// Route::apiResource('photos', PhotoController::class); //
+// Route::apiResources([
+//     'photos', PhotoController::class,
+//     'post', PostController::class
+// ]);
+
+Route::get('/v', function () {
+    // Retrieve a piece of data from the session...
+    $value = session('key');
+
+    // Specifying a default value...
+    $value = session('key', 'default');
+
+    // Store a piece of data in the session...
+    session(['key' => 'value']);
+    echo '<pre>';
+    var_dump($value);
+    print_r(session('key'));
+    // return view('welcome');
+});
+
+// validate
+Route::get('post/create', [PostController::class, 'create']);
+Route::post('post', [PostController::class, 'store']);
+
+
+
 
